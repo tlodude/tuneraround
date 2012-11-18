@@ -1,47 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-	<script src="./jquery-1.8.3.min.js"></script>
-	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </head>
 <body>
-
 	<div id="youtube"></div>
 	<script>
-	var ytjson;
 	$(document).ready(function () {
-	  //your code here
 		function getAndShowYoutubeVideo(artist)
 		{
-			//$("#youtube").append('<iframe class="youtube-player" type="text/html" width="640" height="385" src="http://www.youtube.com/embed/'+M0jmSsQ5ptw+'" frameborder="0"></iframe>');
 			$.ajax({
-			  //url:"http://gdata.youtube.com/feeds/api/standardfeeds/most_popular?v=2&alt=json&category=yellowcard"
-			  //url:"https://gdata.youtube.com/feeds/api/videos/-/"+artist+"?&alt=json"
 			  url:"http://ex.fm/api/v3/song/search/"+artist
 			}).done(function(data) { 
-			  //$("#youtube").append(JSON.stringify(data.feed.entry[0].link[0].href+"<br>"));
-			  //console.log(JSON.stringify(data));
 			  youtubedata = data.songs;
-			  //$("#youtube").append(JSON.stringify(data.songs)+"<br>");
-			  ytjson = data.songs;
-			  //youtubedata = youtubedata.split('?v=')[1].split('&feature')[0];
-			  console.log(JSON.stringify(youtubedata));
-			  //$("#youtube").append('<iframe class="youtube-player" type="text/html" width="640" height="385" src="'+data.feed.entry[0].link[0].href+'" frameborder="0"></iframe>');
 			  youtubedata = youtubedata[0].url;
-			  $("#youtube").append(youtubedata+"<br>");
-
-			  //$("#youtube").append('<iframe class="youtube-player" type="text/html" width="640" height="385" src="http://www.youtube.com/embed/'+youtubedata+'" frameborder="0"></iframe>');
-			  $("youtube").append('<audio controls="controls"><source src="horse.ogg" type="audio/ogg"><source src="'+youtubedata+'" type="audio/mpeg">Your browser does not support the audio element.</audio>');
-			  
+			  youtubedata = youtubedata.split('?plead=')[0];
+			  $("#youtube").append('<a href="'+youtubedata+'">link</a><br>');
+			  $("#youtube").append(youtubedata+"<br>");	  
 			});
 		};
-		getAndShowYoutubeVideo('weezer');
+		getAndShowYoutubeVideo('moby');
 	});
 	</script>
-	<!--
-	<iframe class="youtube-player" type="text/html" width="640" height="385" src="http://www.youtube.com/embed/M0jmSsQ5ptw" frameborder="0">
-	</iframe>
-	-->
 </body>
 </html>
