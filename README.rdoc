@@ -1,0 +1,3 @@
+== TwentyTwo Website
+
+This is the TwentyTwo homepage rails application
