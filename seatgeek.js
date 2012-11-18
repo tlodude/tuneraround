@@ -2,21 +2,17 @@ var http = require('http');
 var url = require('url');
 var fs = require('fs');
 
-// Go to localhost:8009/search[?radius=20]
+// Go to localhost:8008/search
 
 var props = ['name', 'id', 'image', 'url'];
 
 //Routing handlers
 var handle = [];
 handle["search"] = function(response, requesturl){
-	var radius = requesturl.query['radius'];
-	console.log('radius input: ' + radius);
-	radius = !radius ? "10mi" : (radius.indexOf("mi") == -1 ? radius + "mi" : radius);
 	var options = {
 		host: 'api.seatgeek.com', 
-		path: '/2/events?geoip=true&range=' + radius //requesturl.query
+		path: '/2/events?geoip=true&range=5mi'
 	};
-	console.log(options.host + options.path);
 	http.get(options, function(res){
 		var data = '';
 		res.on('data', function(chunk){
@@ -24,9 +20,9 @@ handle["search"] = function(response, requesturl){
 		});
 		res.on('end', function(){
 			//console.log(data);
-			var results = JSON.parse(data);
-			
+			var results = JSON.parse(data);			
 			var events = results.events; 
+			var resultArray = [];
 			for(var i = 0; i < events.length; i++){
 				var event = events[i];
 				if(event.type==='concert'){
@@ -34,6 +30,7 @@ handle["search"] = function(response, requesturl){
 					var performers = event.performers; 
 					for(var j = 0; j < performers.length; j++){
 						var performer = performers[j];
+						resultArray.push(performer);
 						console.log('performer: ');
 						for(var k = 0; k < props.length; k++){
 							console.log('  prop: ' + props[k] + ' ' + performer[props[k]]);
@@ -41,6 +38,8 @@ handle["search"] = function(response, requesturl){
 					}
 				}
 			}
+			response.write(JSON.stringify(resultArray));
+			response.end();
 		});
 
 	}).on('error', function(e){
@@ -52,7 +51,7 @@ handle["search"] = function(response, requesturl){
 http.createServer(function (request, response) {
 	var parsedurl = url.parse(request.url, true);
 	console.log('Request for ' + parsedurl.pathname + " received");
-	route(parsedurl, response);
+	handle["search"](response, parsedurl);
 }).listen(8008);
 
 
