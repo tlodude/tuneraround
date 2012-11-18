@@ -51,14 +51,8 @@ handle["search"] = function(response, requesturl){
 http.createServer(function (request, response) {
 	var parsedurl = url.parse(request.url, true);
 	console.log('Request for ' + parsedurl.pathname + " received");
-<<<<<<< HEAD
-	route(parsedurl, response);
-	//handle["search"](response, parsedurl);
-}).listen(8008);
-=======
 	handle["search"](response, parsedurl);
 }).listen(process.env.PORT || 5000);
->>>>>>> 0ba2a9e8cf9cb56e15e7aa5606b46ec2cba80a4e
 
 
 //Router
