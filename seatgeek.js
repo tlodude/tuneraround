@@ -52,7 +52,7 @@ http.createServer(function (request, response) {
 	var parsedurl = url.parse(request.url, true);
 	console.log('Request for ' + parsedurl.pathname + " received");
 	handle["search"](response, parsedurl);
-}).listen(8008);
+}).listen(process.env.PORT || 5000);
 
 
 //Router
