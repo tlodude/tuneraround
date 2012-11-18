@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8bbb8c7-599b-4cc4-9514-4dc4d816fe2e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/_header.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/_header.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/static_pages/home.html.erb" afterPath="$PROJECT_DIR$/app/views/static_pages/home.html.erb" />
     </list>
     <ignored path="jeltas.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -57,7 +54,7 @@
       <file leaf-file-name="_header.html.erb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/layouts/_header.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="36" selection-start="479" selection-end="479" vertical-scroll-proportion="0.3364486">
+            <state line="12" column="42" selection-start="485" selection-end="485" vertical-scroll-proportion="0.3364486">
               <folding />
             </state>
           </provider>
@@ -967,7 +964,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/_header.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="36" selection-start="479" selection-end="479" vertical-scroll-proportion="0.3364486">
+        <state line="12" column="42" selection-start="485" selection-end="485" vertical-scroll-proportion="0.3364486">
           <folding />
         </state>
       </provider>
