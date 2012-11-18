@@ -1,22 +1,20 @@
-<div class="navbar">
+<div class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
-    <div class="container">
-
-      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+    <div class="container-fluid">
       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-
-      <!-- Be sure to leave the brand out there if you want it shown -->
-      <a class="brand" href="#">TURNaROUND</a>
-
-      <!-- Everything you want hidden at 940px or less, place within here -->
-      <div class="nav-collapse collapse">
-        <!-- .nav, .navbar-search, .navbar-form, etc -->
-      </div>
-
+      <a class="brand" href="#">TuneAround</a>
+      <div class="nav-collapse in collapse" style="height: auto;">
+        <p class="navbar-text pull-right">
+          Logged in as <a href="#" class="navbar-link">Username</a>
+        </p>
+        <ul class="nav">
+          <li> <%= link_to "home",    careers_path %> </li>
+        </ul>
+      </div><!--/.nav-collapse -->
     </div>
   </div>
 </div>
