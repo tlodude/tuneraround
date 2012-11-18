@@ -25,6 +25,8 @@ handle["search"] = function(response, requesturl){
 			var resultArray = [];
 			for(var i = 0; i < events.length; i++){
 				var event = events[i];
+				var location = event.venue;
+
 				if(event.type==='concert'){
 					console.log(event.title);
 					var performers = event.performers; 
@@ -34,6 +36,15 @@ handle["search"] = function(response, requesturl){
 						console.log('performer: ');
 						for(var k = 0; k < props.length; k++){
 							console.log('  prop: ' + props[k] + ' ' + performer[props[k]]);
+						}
+
+					}
+					//process location
+					if(location){
+						var address, latitude, longitutde;
+						if((address = location.address) == null){
+							latitude = location.location.lat;
+							longitutde = location.location.lon;
 						}
 					}
 				}

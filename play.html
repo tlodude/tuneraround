@@ -5,8 +5,36 @@
 </head>
 <body>
 	<div id="youtube"></div>
+	<div class="container">
+
+  	<ul class="nav nav-list">
+	    <li class="nav-header active"><a href="#">Artist Name</a></li>
+	    <li><a href="#">Play Song <span><img id="test" src="img/icon.png" /></span></a></li>
+	    <li><a href="#">Buy Tickets <span><img id="test" src="img/icon.png" /></span></a></li>
+  	</ul>
+  	<ul class="nav nav-list">
+	    <li class="nav-header active"><a href="#">Artist Name</a></li>
+	    <li><a href="#">Play Song <span><img id="test" src="img/icon.png" /></span></a></li>
+	    <li><a href="#">Buy Tickets <span><img id="test" src="img/icon.png" /></span></a></li>
+  	</ul>
+  	<ul class="nav nav-list">
+	    <li class="nav-header active"><a href="#">List header</a></li>
+	    <li><a href="#">Play Song <span><img id="test" src="img/icon.png" /></span></a></li>
+	    <li><a href="#">Buy Tickets <span><img id="test" src="img/icon.png" /></span></a></li>
+  	</ul>
+  	<ul class="nav nav-list">
+	    <li class="nav-header active"><a href="#">List header</a></li>
+	    <li><a href="#">Play Song <span><img id="test" src="img/icon.png" /></span></a></li>
+	    <li><a href="#">Buy Tickets <span><img id="test" src="img/icon.png" /></span></a></li>
+  	</ul>
+
+
+	</div><!-- /.container -->
+
 	<script>
 	$(document).ready(function () {
+		var videoWidth = '100%';
+		var videoHeight = '150px';
 
 		$.ajax({
 			type: "GET",
@@ -44,8 +72,23 @@
 				});
 			});
 		}
-		//getAndShowYoutubeVideo('moby');
+
+		getLocation();
+		//the artist name is an ID
+		function embedAudioPlayer(id, url){
+			var videoplayer = '<video width=100px; height=100px; controls="" name="media" id="' + id + '"><source src="'+ url + '" type="audio/mpeg"></video>';			
+			return videoplayer;
+		}
+		
+		function getLocation(){
+			if(navigator.geolocation){
+				navigator.geolocation.getCurrentPosition(function(position){
+					console.log("Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude);
+				});
+			}
+		}
 	});
 	</script>
+
 </body>
 </html>
