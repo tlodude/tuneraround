@@ -51,7 +51,7 @@ handle["search"] = function(response, requesturl){
 http.createServer(function (request, response) {
 	var parsedurl = url.parse(request.url, true);
 	console.log('Request for ' + parsedurl.pathname + " received");
-	handle["search"](response, parsedurl);
+	route(parsedurl, response);
 }).listen(process.env.PORT || 5000);
 
 
