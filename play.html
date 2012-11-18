@@ -7,19 +7,44 @@
 	<div id="youtube"></div>
 	<script>
 	$(document).ready(function () {
-		function getAndShowYoutubeVideo(artist)
+
+		$.ajax({
+			type: "GET",
+		    url:"./search",	
+		    async: true,
+		    dataType: "json",
+		    success: function(res) {
+		       var performers = res;
+				$(performers).each(function(i, val){
+					console.log(val);
+					getAndShowYoutubeVideo(val.name, val.url);
+				});
+		    }
+		}); 
+		
+
+
+		function getAndShowYoutubeVideo(artist, seatgeekurl)
 		{
+			console.log("http://ex.fm/api/v3/song/search/"+encodeURIComponent(artist));
 			$.ajax({
-			  url:"http://ex.fm/api/v3/song/search/"+artist
+			  url:"http://ex.fm/api/v3/song/search/"+encodeURIComponent(artist)
 			}).done(function(data) { 
-			  youtubedata = data.songs;
-			  youtubedata = youtubedata[0].url;
-			  youtubedata = youtubedata.split('?plead=')[0];
-			  $("#youtube").append('<a href="'+youtubedata+'">link</a><br>');
-			  $("#youtube").append(youtubedata+"<br>");	  
+			  	var youtubedata = data.songs;
+			    if(youtubedata.length == 0) return; 
+				$(youtubedata).each(function(i, val){
+					if(val.artist && val.artist.indexOf(artist) > -1){
+						var url = val.url;
+						var div = $('<div class="artist">').append(artist + ' ' + seatgeekurl + '<br><a href="'+ url +'">link</a><br>').
+							append(url+"<br><br>");
+						$('#youtube').append(div);
+						return false ; //false to break	  
+					}
+					
+				});
 			});
-		};
-		getAndShowYoutubeVideo('moby');
+		}
+		//getAndShowYoutubeVideo('moby');
 	});
 	</script>
 </body>

@@ -51,7 +51,8 @@ handle["search"] = function(response, requesturl){
 http.createServer(function (request, response) {
 	var parsedurl = url.parse(request.url, true);
 	console.log('Request for ' + parsedurl.pathname + " received");
-	handle["search"](response, parsedurl);
+	route(parsedurl, response);
+	//handle["search"](response, parsedurl);
 }).listen(8008);
 
 
@@ -61,6 +62,16 @@ function route(requesturl, response){
 	console.log(pathname);
 	if(typeof handle[pathname] === 'function'){
 		handle[pathname](response, requesturl);
+	} else if(pathname === ""){
+		//serve home page
+		fs.readFile('./play.html', function (err, html) {
+		    if (err) {
+		        throw err; 
+		    }       
+		    response.writeHeader(200, {"Content-Type": "text/html"});  
+		    response.write(html);  
+		    response.end();
+	    });  
 	} else {
 		console.log('Fail, no request handler for ' + pathname);
 	}
