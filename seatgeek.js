@@ -71,6 +71,11 @@ function route(requesturl, response){
 		    response.write(html);  
 		    response.end();
 	    });  
+	} else if(requesturl.pathname.indexOf('favico') != -1){
+		//squelch for now
+		response.writeHead(200, {'Content-Type': 'image/x-icon'});
+		response.end();
+
 	} else {
 		console.log('Fail, no request handler for ' + pathname);
 	}
